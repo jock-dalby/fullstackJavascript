@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="main.css">
+  <title>AJAX with JavaScript</title>
+  <script>
+
+    // Step 1. Create an XMLHTTP Request object => This tells the browser to get ready to work with AJAX.
+
+    const xhr = new XMLHttpRequest();
+
+    // Step 2. Define all callback function => This programming sets up a function that runs each time there is a change in the state of the Ajax request. Each step in the Ajax process, like opening a new request or sending out that request triggers a change of state. For this call-back function we're only interested in the final change of state, when the server sends back its response.
+
+    // The XML http request object keeps track of the state using a special property named ready state. That property contains a number including the current state of the request and that property holds the number four. Then the request is done and the server has sent back a response.
+
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) { // if true then serever has sent back everything it is going to send.
+        if (xhr.status === 200) {
+        //200 means okay, and is the standard response for a successful HTTP request.
+          document.getElementById('ajax').innerHTML = xhr.responseText; // This is the info the server sends back.
+        } else if (xhr.status === 404) {
+          //file not found
+          alert(xhr.statusText);
+        } else if (xhr.status === 500) {
+          // server had a problem
+          alert(xhr.statusText);
+        }
+      }
+    };
+
+    // Step 3. Open a request. An HXR object has a method or function called open. This function prepares the browser for sending the request. You give the function two pieces of information. The first is the HTTP method that you're going text video. The URL is where the request is going. This could point to a file or a server-side program on your web server.
+
+    xhr.open('GET', 'sidebar.html');
+
+    // Step 4. Send the request. Because here we're requesting a chunk of html we don't provide the send method with any information, but when you need to submit information to the server like the users input from a web form. You can pass the send method that data.
+    function sendAJAX() {
+      xhr.send();
+      document.getElementById('load').style.display = 'none';
+    }
+
+  </script>
+</head>
+<body>
+  <div class="grid-container centered">
+    <div class="grid-100">
+      <div class="contained">
+        <div class="grid-100">
+          <div class="heading">
+            <h1>Bring on the AJAX</h1>
+            <button id="load" onclick="sendAJAX()">Bring it!</button>
+          </div>
+          <div id="ajax">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
