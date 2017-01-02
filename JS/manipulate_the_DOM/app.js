@@ -105,7 +105,7 @@ for (let i = 0; i < listItems.length; i++) {
   })
 };
 
-// The problem with the above solution is that if we remove the last item from the list, plums, and then add it back, it will no longer change case when we hover over it This is because we removed the element after we attached the behavior to it, and the new element doesn't have that event listener.
+// The problem with the above solution is that if we remove the last item from the list, plums, and then add it back, it will no longer change case when we hover over it. This is because we removed the element after we attached the behavior to it, and the new element doesn't have that event listener.
 
 // To solve this we can move the event handler to  one of the ancestor element and have them pass it down to the li elements.
 
